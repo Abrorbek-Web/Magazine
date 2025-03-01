@@ -29,10 +29,9 @@ const ProductDetailedPage = () => {
           if (c.id === product?.id) {
             return {
               ...c,
-              quantity: c.quantity + 1,
+              quantity: (c.quantity || 0) + 1, // Ensure `quantity` is a number
             };
           }
-
           return c;
         });
 
@@ -43,7 +42,6 @@ const ProductDetailedPage = () => {
       }
       toast("Product added to your bag!!");
     }
-    return "";
   };
 
   useEffect(() => {
@@ -112,10 +110,6 @@ const ProductDetailedPage = () => {
                               />
                             )
                           )}
-                          {/* <ReactStars
-														value={product.rating.rate}
-														edit={false}
-													/> */}
                         </div>
                       )}
                       <p className="text-blue-600 hover:underline cursor-pointer text-xs">
