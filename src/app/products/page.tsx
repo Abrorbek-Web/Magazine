@@ -1,27 +1,11 @@
-"use client";
-
 import Cta from "@/components/cta";
 import Feature from "@/components/feature";
 import Product from "@/components/product";
 import { ProductType } from "@/interfaces";
-import axios from "axios";
-import { useEffect, useState } from "react";
 
-const ProductsPage = () => {
-  const [products, setProducts] = useState<ProductType[]>([]);
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const { data } = await axios.get("https://fakestoreapi.com/products");
-        setProducts(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  }, []);
-  // const res = await fetch("https://fakestoreapi.com/products");
-  // const products: ProductType[] = await res.json();
+const ProductsPage = async () => {
+  const res = await fetch("https://fakestoreapi.com/products");
+  const products: ProductType[] = await res.json();
 
   return (
     <main className="min-h-screen max-w-7xl mx-auto px-8 xl:px-0 ">
